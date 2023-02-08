@@ -1,10 +1,15 @@
 const Node = require('./Node');
+const Sort = require('./sort');
 
 
 class BalancedBinaryTree{
 
     constructor(array){
-        this.root = this.buildTree(array);
+        // array sort.
+        // array delete duplicates.
+        this._array2 = array;
+        this._array2 = Sort(this._array2);
+        this.root = this.buildTree(this._array2);
     }
 
     buildTree(array){
