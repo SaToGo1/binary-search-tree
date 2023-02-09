@@ -21,3 +21,6 @@ tree3.prettyPrint();
 let tree4 = new Tree(array4);
 console.log(`From array4: ${array4} make: `)
 tree4.prettyPrint();
+
+let node = tree4.search(6345);
+console.log(node);

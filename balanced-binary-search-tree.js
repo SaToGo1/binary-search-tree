@@ -26,12 +26,29 @@ class BalancedBinaryTree{
 
     prettyPrint = (node=this.root, prefix = '', isLeft = true) => {
         if (node.right !== null) {
-          this.prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+            this.prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
         }
         console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
         if (node.left !== null) {
-          this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+            this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
         }
+    }
+
+    search(data, node=this.root){
+        
+        if(node === null){
+          return null
+        }
+
+        if(data === node.data){
+            return node;
+        }
+
+        if(data < node.data){
+            return this.search(data, node.left);
+        }
+        
+        return this.search(data, node.right);
     }
 }
 
