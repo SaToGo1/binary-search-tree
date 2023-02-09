@@ -37,18 +37,43 @@ class BalancedBinaryTree{
     search(data, node=this.root){
         
         if(node === null){
-          return null
+          return node;
         }
 
         if(data === node.data){
             return node;
         }
 
-        if(data < node.data){
+        if(data < node.data){            
             return this.search(data, node.left);
         }
-        
+
         return this.search(data, node.right);
+    }
+
+    insert(data, node=this.root){
+        
+        if(data === node.data){
+            return 'repeated';
+        }
+
+        if(data < node.data){
+            if(node.left === null){
+                let newNode = new Node(data);
+                node.left = newNode;
+                return 'inserted';
+            }
+            return this.insert(data, node.left);
+        }
+
+        if(data > node.data){
+            if(node.right === null){
+                let newNode = new Node(data);
+                node.right = newNode;
+                return 'inserted';
+            }
+            return this.insert(data, node.right);
+        }
     }
 }
 

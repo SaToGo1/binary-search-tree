@@ -24,3 +24,21 @@ tree4.prettyPrint();
 
 let node = tree4.search(6345);
 console.log(node);
+
+console.log(tree4.insert(324));
+console.log(tree4.insert(323));
+tree4.prettyPrint();
+
+console.log(tree4.insert(322));
+console.log(tree4.insert(321));
+tree4.prettyPrint();
+
+let tree5 = new Tree([50]);
+tree5.insert(30);
+tree5.insert(20);
+tree5.insert(40);
+tree5.insert(70);
+tree5.insert(60);
+tree5.insert(80);
+tree5.prettyPrint();
+
