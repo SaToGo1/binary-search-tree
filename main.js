@@ -82,8 +82,15 @@ if(DELETE){
 
     console.log('EXAMPLE 3')
     tree8 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    tree8.insert(15);
+    tree8.insert(25);
+    tree8.insert(35);
+    tree8.insert(45);
     tree8.prettyPrint();
     console.log('delete 30');
     tree8.delete(30);
-    // tree8.prettyPrint();
+    tree8.prettyPrint();
+    console.log('delete 70');
+    tree8.delete(70);
+    tree8.prettyPrint();
 }

@@ -138,38 +138,49 @@ class BalancedBinaryTree{
         // We search for the node more to the left(smallest) and replace node to delete with
         // the smallest node
         if( ( nodeToDelete.right != null ) && ( nodeToDelete.left != null )){
-            let nextBiggestNode = this._NextBiggest(nodeToDelete);
+            let nextBiggestNode = this._NextBiggestForDelete(nodeToDelete);
             console.log(`next biggest: ${nextBiggestNode.data}`);
             console.log(`previous node data: ${previousNode.data}`);
             
             //child bigger than father, chils is in the right of father.
             if(nodeToDelete.data > previousNode.data){
                 nextBiggestNode.left = nodeToDelete.left;
-                nextBiggestNode.right = nodeToDelete.right;
+                // if to not have loop "trees"
+                if(nextBiggestNode != nodeToDelete.right)
+                    nextBiggestNode.right = nodeToDelete.right;
+                else
+                    nextBiggestNode.right = null;
                 previousNode.right = nextBiggestNode;
             }else{
             //child smaller than father, child is in the left of father.
+            console.log(`nodeToDelete.left.data: ${nodeToDelete.left}`)
                 nextBiggestNode.left = nodeToDelete.left;
-                // if() // INFINITE LOOP ON TREE :(
-                nextBiggestNode.right = nodeToDelete.right;
+                // if to not have loop "trees"
+                if(nextBiggestNode != nodeToDelete.right)
+                    nextBiggestNode.right = nodeToDelete.right;
+                else
+                    nextBiggestNode.right = null;
                 previousNode.left = nextBiggestNode;
             }
         }
     }
 
-    _NextBiggest(node){
+    _NextBiggestForDelete(node){
         // from a node X the next biggest node in the tree is going 1 to the right
         // and fom there going to the smallest of that subtree.
         let subtree = node.right;
-        return this._smallestNode(subtree);
+        return this._smallestNodeForDelete(subtree, node);
     }
 
-    _smallestNode(node){
+    _smallestNodeForDelete(node, previousNode, depth=0){
         if(node.left === null){
+            // if to not have loop "trees"
+            if(depth > 0)
+                previousNode.left = null;
             return node;
         }
         else{
-            return this._smallestNode(node.left);
+            return this._smallestNodeForDelete(node.left, node, depth+1);
         }
     }
 }
