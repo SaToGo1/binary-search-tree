@@ -4,7 +4,8 @@ const Tree = require('./balanced-binary-search-tree');
 const BASE = false;
 const SEARCH = false;
 const INSERT = false;
-const DELETE = true;
+const DELETE = false;
+const LEVEL_ORDER = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -63,14 +64,14 @@ if(DELETE){
     console.log('DELETE');
     console.log(' ');
 
-    tree6 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    let tree6 = new Tree([50, 30, 20, 40, 70, 60, 80]);
     console.log('EXAMPLE 1')
     tree6.prettyPrint();
     console.log('delete 20');
     tree6.delete(20);
     tree6.prettyPrint();
 
-    tree7 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    let tree7 = new Tree([50, 30, 20, 40, 70, 60, 80]);
     tree7.insert(49);
     tree7.insert(48);
     tree7.insert(47);
@@ -81,7 +82,7 @@ if(DELETE){
     tree7.prettyPrint();
 
     console.log('EXAMPLE 3')
-    tree8 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    let tree8 = new Tree([50, 30, 20, 40, 70, 60, 80]);
     tree8.insert(15);
     tree8.insert(25);
     tree8.insert(35);
@@ -93,4 +94,35 @@ if(DELETE){
     console.log('delete 70');
     tree8.delete(70);
     tree8.prettyPrint();
+}
+
+if(LEVEL_ORDER){
+    console.log();
+    console.log('EXAMPLE LEVEL ORDER TRANSVERSAL');
+    let tree9 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    tree9.prettyPrint();
+    tree9.levelOrder(callData);
+
+    let tree10 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+    tree10.insert(15);
+    tree10.insert(25);
+    tree10.insert(35);
+    tree10.insert(45);
+    tree10.prettyPrint();
+    tree10.levelOrder(callData);
+
+    tree10.delete(30);
+    tree10.delete(70);
+    tree10.prettyPrint();
+    tree10.levelOrder(callData);
+}
+
+// if(DEPTH_ORDER){
+
+// }
+
+
+
+function callData(node){
+    console.log(node.data);
 }

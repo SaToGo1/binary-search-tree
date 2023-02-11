@@ -139,8 +139,6 @@ class BalancedBinaryTree{
         // the smallest node
         if( ( nodeToDelete.right != null ) && ( nodeToDelete.left != null )){
             let nextBiggestNode = this._NextBiggestForDelete(nodeToDelete);
-            console.log(`next biggest: ${nextBiggestNode.data}`);
-            console.log(`previous node data: ${previousNode.data}`);
             
             //child bigger than father, chils is in the right of father.
             if(nodeToDelete.data > previousNode.data){
@@ -153,7 +151,6 @@ class BalancedBinaryTree{
                 previousNode.right = nextBiggestNode;
             }else{
             //child smaller than father, child is in the left of father.
-            console.log(`nodeToDelete.left.data: ${nodeToDelete.left}`)
                 nextBiggestNode.left = nodeToDelete.left;
                 // if to not have loop "trees"
                 if(nextBiggestNode != nodeToDelete.right)
@@ -182,6 +179,30 @@ class BalancedBinaryTree{
         else{
             return this._smallestNodeForDelete(node.left, node, depth+1);
         }
+    }
+
+    levelOrder(cb, root=this.root){
+        const recursive = true;
+        const loop = false;
+
+        if(recursive){
+            // use shift and push for FIFO.
+            let queue = [root];
+            this._levelOrderRecursive(cb, queue);
+        }
+
+        if(loop){
+            return;
+        }
+    }
+
+    _levelOrderRecursive(cb, queue){
+        let node = queue.shift();
+        if(node.left) queue.push(node.left);
+        if(node.right) queue.push(node.right);
+        cb(node);
+
+        if(queue.length > 0) return this._levelOrderRecursive(cb, queue);
     }
 }
 
