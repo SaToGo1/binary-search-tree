@@ -1,6 +1,7 @@
 const Tree = require('./balanced-binary-search-tree');
 
 
+//Differents TESTS
 const BASE = false;
 const SEARCH = false;
 const INSERT = false;
@@ -8,7 +9,8 @@ const DELETE = false;
 const LEVEL_ORDER = false;
 const DEPTH_ORDER = false;
 const HEIGHT = false;
-const DEPTH = true;
+const DEPTH = false;
+const IS_BALANCED = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -145,16 +147,16 @@ if(DEPTH_ORDER){
 }
 
 let tree11 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+tree11.insert(5);
+tree11.insert(4);
+tree11.insert(3);
+tree11.insert(2);
+tree11.insert(1);
 if(HEIGHT){
     console.log('EXAMPLE HEIGHT');
     tree10.prettyPrint()
     console.log(`tree height: ${tree10.height()}`);
 
-    tree11.insert(5);
-    tree11.insert(4);
-    tree11.insert(3);
-    tree11.insert(2);
-    tree11.insert(1);
     tree11.prettyPrint()
     console.log(`tree height: ${tree11.height()}`);
 
@@ -165,11 +167,6 @@ if(HEIGHT){
 if(DEPTH){
     console.log('EXAMPLE DEPTH');
 
-    tree11.insert(5);
-    tree11.insert(4);
-    tree11.insert(3);
-    tree11.insert(2);
-    tree11.insert(1);
     tree11.prettyPrint()
 
     let node1 = tree11.search(3);
@@ -178,6 +175,17 @@ if(DEPTH){
     console.log(`Depth for node 60: ${tree11.depth(node2)}`);
 }
 
+if(IS_BALANCED){
+    console.log('IsBalanced Example');
+    tree9.prettyPrint();
+    console.log(`isBalanced? ${tree9.isBalanced()}`)
+
+    tree10.prettyPrint();
+    console.log(`isBalanced? ${tree10.isBalanced()}`)
+
+    tree11.prettyPrint();
+    console.log(`isBalanced? ${tree11.isBalanced()}`)
+}
 
 
 

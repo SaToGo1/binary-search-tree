@@ -344,6 +344,28 @@ class BalancedBinaryTree{
         if( queue.length > 0 && !(targetReached) ) return this._depth(targetNode, queue);
         return depth;
     }
+
+    isBalanced(){
+        let arrayOfLeafs = []
+        this.levelOrder((node) =>{
+            if(this.height(node) === 0){
+                arrayOfLeafs.push(node);
+            }
+        })
+        
+        let arrayOfDepths = [];
+        arrayOfLeafs.forEach(x => arrayOfDepths.push(this.depth(x)));
+        console.log(`array of depths: ${arrayOfDepths}`);
+
+        let maxDepth = Math.max(...arrayOfDepths);
+        let minDepth = Math.min(...arrayOfDepths);
+        console.log(`max: ${maxDepth}`);
+        console.log(`min: ${minDepth}`);
+
+        //to be balanced difference of heights can't be bigger than 1;
+        if( (maxDepth - minDepth) > 1) return false;
+        return true;
+    }
 }
 
 module.exports = BalancedBinaryTree
