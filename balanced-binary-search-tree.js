@@ -277,6 +277,27 @@ class BalancedBinaryTree{
         
         return array;
     }
+
+    height(root=this.root){
+        // Post Order
+        if(root === null){
+            return 0;
+        }
+
+        //visit order postorder = <left><right><root>
+        let leftSubTree = root.left;
+        let rightSubTree = root.right;
+
+        let height = 0;
+        let heightLeft = 0;
+        let heightRight = 0;
+        heightLeft = this.height(leftSubTree);
+        heightRight = this.height(rightSubTree);
+        height = heightLeft > heightRight? heightLeft : heightRight;
+        height++;
+        
+        return height; 
+    }
 }
 
 module.exports = BalancedBinaryTree

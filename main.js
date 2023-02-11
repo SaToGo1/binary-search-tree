@@ -5,8 +5,9 @@ const BASE = false;
 const SEARCH = false;
 const INSERT = false;
 const DELETE = false;
-const LEVEL_ORDER = true;
-const DEPTH_ORDER = true;
+const LEVEL_ORDER = false;
+const DEPTH_ORDER = false;
+const HEIGHT = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -141,6 +142,23 @@ if(DEPTH_ORDER){
     ar3 = tree10.depthPostOrder();
     console.log(`${ar3}`);
 }
+
+let tree11 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+if(HEIGHT){
+    console.log('EXAMPLE HEIGHT');
+    tree10.prettyPrint()
+    console.log(`tree height: ${tree10.height()}`);
+
+    tree11.insert(5);
+    tree11.insert(4);
+    tree11.insert(3);
+    tree11.insert(2);
+    tree11.insert(1);
+    tree11.prettyPrint()
+    console.log(`tree height: ${tree11.height()}`);
+
+}
+
 
 
 
