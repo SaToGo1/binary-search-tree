@@ -347,6 +347,9 @@ class BalancedBinaryTree{
 
     isBalanced(){
         let arrayOfLeafs = []
+        // by default levelOrder picks root node
+        // as start point.
+        // go through every node and save leafs in an array.
         this.levelOrder((node) =>{
             if(this.height(node) === 0){
                 arrayOfLeafs.push(node);
@@ -355,16 +358,29 @@ class BalancedBinaryTree{
         
         let arrayOfDepths = [];
         arrayOfLeafs.forEach(x => arrayOfDepths.push(this.depth(x)));
-        console.log(`array of depths: ${arrayOfDepths}`);
 
         let maxDepth = Math.max(...arrayOfDepths);
         let minDepth = Math.min(...arrayOfDepths);
-        console.log(`max: ${maxDepth}`);
-        console.log(`min: ${minDepth}`);
 
         //to be balanced difference of heights can't be bigger than 1;
         if( (maxDepth - minDepth) > 1) return false;
         return true;
+    }
+
+    rebalance(){
+        if(this.isBalanced()){
+            return;
+        }
+
+        // depth first inorder traversal pass through
+        // the nodes in ascending order. so we will
+        // make a new array that is already sorted.
+        let sortedArray = []
+        this.depthInOrder(x => sortedArray.push(x.data));
+        console.log(`sortedArray = ${sortedArray}`)
+
+        // We build a new tree that will be balanced.
+        this.root = this.buildTree(sortedArray);
     }
 }
 

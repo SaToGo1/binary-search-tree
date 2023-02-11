@@ -10,7 +10,8 @@ const LEVEL_ORDER = false;
 const DEPTH_ORDER = false;
 const HEIGHT = false;
 const DEPTH = false;
-const IS_BALANCED = true;
+const IS_BALANCED = false;
+const REBALANCE = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -187,7 +188,24 @@ if(IS_BALANCED){
     console.log(`isBalanced? ${tree11.isBalanced()}`)
 }
 
+if(REBALANCE){
+    console.log('REBALANCE Example');
+    tree9.prettyPrint();
+    console.log(`isBalanced? ${tree9.isBalanced()}`)
+    tree9.rebalance();
+    tree9.prettyPrint();
 
+    tree10.prettyPrint();
+    console.log(`isBalanced? ${tree10.isBalanced()}`)
+    tree10.rebalance()
+    tree10.prettyPrint();
+
+    tree11.prettyPrint();
+    console.log(`tree11 isBalanced? ${tree11.isBalanced()}`)
+    tree11.rebalance()
+    tree11.prettyPrint();
+    console.log(`tree11 isBalanced? ${tree11.isBalanced()}`)
+}
 
 function callData(node){
     console.log(node.data);
