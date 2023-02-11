@@ -2,6 +2,7 @@ const Tree = require('./balanced-binary-search-tree');
 
 
 //Differents TESTS
+const MAIN_TESTING = true;
 const BASE = false;
 const SEARCH = false;
 const INSERT = false;
@@ -11,17 +12,72 @@ const DEPTH_ORDER = false;
 const HEIGHT = false;
 const DEPTH = false;
 const IS_BALANCED = false;
-const REBALANCE = true;
+const REBALANCE = false;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
 let array3 = [0, 1, 2];
 let array4 = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
-if(BASE){
-    let tree = new Tree(array1);
-    console.log(`From array1: ${array1} make: `)
+randomArray = (length, max) => [...new Array(length)]
+.map(() => Math.round(Math.random() * max));
+
+if(MAIN_TESTING){
+    //make a tree with a random array;
+    console.log('make tree from random array')
+    let array = randomArray(15, 500);
+    let tree = new Tree(array);
+
     tree.prettyPrint();
+    console.log(`is Tree balanced? ${tree.isBalanced()}`);
+
+    console.log(' ')
+    console.log(`print elements in level-order: ${tree.levelOrder()}`);
+    console.log(' ')
+    console.log(`print elements in preorder: ${tree.depthPreOrder()}`);
+    console.log(' ')
+    console.log(`print elements in inorder: ${tree.depthInOrder()}`);
+    console.log(' ')
+    console.log(`print elements in postorder: ${tree.depthPostOrder()}`);
+    console.log(' ')
+
+    console.log('inserting numbers ')
+    tree.insert(106);
+    tree.insert(107);
+    tree.insert(108);
+    tree.insert(109);
+    tree.insert(123);
+    tree.insert(148);
+    tree.prettyPrint();
+    console.log(`is Tree balanced? ${tree.isBalanced()}`);
+
+    console.log('rebalancing the tree');
+    tree.rebalance();
+    tree.prettyPrint();
+    console.log(`is Tree balanced? ${tree.isBalanced()}`);
+
+    console.log(' ')
+    console.log(`print elements in level-order: ${tree.levelOrder()}`);
+    console.log(' ')
+    console.log(`print elements in preorder: ${tree.depthPreOrder()}`);
+    console.log(' ')
+    console.log(`print elements in inorder: ${tree.depthInOrder()}`);
+    console.log(' ')
+    console.log(`print elements in postorder: ${tree.depthPostOrder()}`);
+    console.log(' ')
+}
+
+
+
+
+
+
+
+
+if(BASE){
+    let tree1 = new Tree(array1);
+    console.log(`From array1: ${array1} make: `)
+    tree1.prettyPrint();
 
     let tree2 = new Tree(array2);
     console.log(`From array2: ${array2} make: `)
@@ -34,17 +90,21 @@ if(BASE){
 
 //Default
 let tree4 = new Tree(array4);
-console.log(`From array4: ${array4} make: `)
-tree4.prettyPrint();
 
 // SEARCH
 if(SEARCH){
+    console.log(`From array4: ${array4} make: `)
+    tree4.prettyPrint();
+
     let node = tree4.search(6345);
     console.log(node);
 }
 
 // INSERT
 if(INSERT){
+    console.log(`From array4: ${array4} make: `)
+    tree4.prettyPrint();
+
     console.log(tree4.insert(324));
     console.log(tree4.insert(323));
     tree4.prettyPrint();
@@ -210,3 +270,6 @@ if(REBALANCE){
 function callData(node){
     console.log(node.data);
 }
+
+randomArray = (length, max) => [...new Array(length)]
+.map(() => Math.round(Math.random() * max));

@@ -377,7 +377,6 @@ class BalancedBinaryTree{
         // make a new array that is already sorted.
         let sortedArray = []
         this.depthInOrder(x => sortedArray.push(x.data));
-        console.log(`sortedArray = ${sortedArray}`)
 
         // We build a new tree that will be balanced.
         this.root = this.buildTree(sortedArray);
