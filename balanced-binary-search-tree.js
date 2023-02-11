@@ -182,9 +182,10 @@ class BalancedBinaryTree{
     }
 
     levelOrder(cb, root=this.root){
-        const recursive = true;
-        const loop = false;
+        const recursive = false;
+        const loop = true;
 
+        
         if(recursive){
             // use shift and push for FIFO.
             let queue = [root];
@@ -192,7 +193,13 @@ class BalancedBinaryTree{
         }
 
         if(loop){
-            return;
+            let queue = [root];
+            while(queue.length > 0){
+                let node = queue.shift();
+                if(node.left) queue.push(node.left);
+                if(node.right) queue.push(node.right);
+                cb(node);
+            }
         }
     }
 
