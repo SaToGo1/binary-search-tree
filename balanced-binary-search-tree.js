@@ -181,7 +181,7 @@ class BalancedBinaryTree{
         }
     }
 
-    levelOrder(cb, root=this.root){
+    levelOrder(cb=null, root=this.root){
         const recursive = true;
         const loop = false;
 
@@ -206,7 +206,7 @@ class BalancedBinaryTree{
                 if(node.left) queue.push(node.left);
                 if(node.right) queue.push(node.right);
                 array.push(node.data);
-                cb(node);
+                if(cb) cb(node);
             }
         }
 
@@ -218,15 +218,65 @@ class BalancedBinaryTree{
         if(node.left) queue.push(node.left);
         if(node.right) queue.push(node.right);
         array.push(node.data);
-        cb(node);
+        if(cb) cb(node);
 
         if(queue.length > 0) return this._levelOrderRecursive(cb, queue, array);
         return array;
     }
 
-    // DepthPreOrder(){
-    //     if
-    // }
+    depthPreOrder(cb=null, root=this.root, array=[]){
+        //Base Case 
+        if(root === null){
+            return;
+        }
+
+        //visit order preorder = <root><left><right>
+        let leftSubTree = root.left;
+        let rightSubTree = root.right;
+
+        array.push(root.data);
+        if(cb) cb(root);
+        this.depthPreOrder(cb, leftSubTree, array);
+        this.depthPreOrder(cb, rightSubTree, array);
+
+        return array;
+    }
+
+    depthInOrder(cb=null, root=this.root, array=[]){
+        //Base Case 
+        if(root === null){
+            return;
+        }
+
+        //visit order inorder = <left><root><right>
+        let leftSubTree = root.left;
+        let rightSubTree = root.right;
+
+        this.depthInOrder(cb, leftSubTree, array);
+        array.push(root.data);
+        if(cb) cb(root);
+        this.depthInOrder(cb, rightSubTree, array);
+
+        return array;
+    }
+
+    depthPostOrder(cb=null, root=this.root, array=[]){
+        //Base Case 
+        if(root === null){
+            return;
+        }
+
+        //visit order postorder = <left><right><root>
+        let leftSubTree = root.left;
+        let rightSubTree = root.right;
+
+        this.depthPostOrder(cb, leftSubTree, array);
+        this.depthPostOrder(cb, rightSubTree, array);
+        array.push(root.data);
+        if(cb) cb(root);
+        
+        return array;
+    }
 }
 
 module.exports = BalancedBinaryTree

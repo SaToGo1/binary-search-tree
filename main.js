@@ -6,6 +6,7 @@ const SEARCH = false;
 const INSERT = false;
 const DELETE = false;
 const LEVEL_ORDER = true;
+const DEPTH_ORDER = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -96,31 +97,50 @@ if(DELETE){
     tree8.prettyPrint();
 }
 
+
+
+let tree9 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+let tree10 = new Tree([50, 30, 20, 40, 70, 60, 80]);
+tree10.insert(15);
+tree10.insert(25);
+tree10.insert(35);
+tree10.insert(45);
+
+let ar1 = [];
+let ar2 = [];
+let ar3 = [];
 if(LEVEL_ORDER){
     console.log();
     console.log('EXAMPLE LEVEL ORDER TRANSVERSAL');
-    let tree9 = new Tree([50, 30, 20, 40, 70, 60, 80]);
     tree9.prettyPrint();
     tree9.levelOrder(callData);
 
-    let tree10 = new Tree([50, 30, 20, 40, 70, 60, 80]);
-    tree10.insert(15);
-    tree10.insert(25);
-    tree10.insert(35);
-    tree10.insert(45);
     tree10.prettyPrint();
     tree10.levelOrder(callData);
 
     tree10.delete(30);
     tree10.delete(70);
     tree10.prettyPrint();
-    let ar = tree10.levelOrder(callData);
-    console.log(`ar = ${ar}`);
+    ar1 = tree10.levelOrder(callData);
+    console.log(`ar = ${ar1}`);
 }
 
-// if(DEPTH_ORDER){
+if(DEPTH_ORDER){
+    console.log();
+    console.log('EXAMPLE Depth Pre Order TRANSVERSAL');
+    console.log('PREORDER');
+    tree10.prettyPrint();
+    ar1 = tree10.depthPreOrder();
+    console.log(`${ar1}`);
 
-// }
+    console.log('INORDER');
+    ar2 = tree10.depthInOrder();
+    console.log(`${ar2}`);
+
+    console.log('POSTORDER');
+    ar3 = tree10.depthPostOrder();
+    console.log(`${ar3}`);
+}
 
 
 
