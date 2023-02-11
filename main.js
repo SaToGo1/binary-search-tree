@@ -7,7 +7,8 @@ const INSERT = false;
 const DELETE = false;
 const LEVEL_ORDER = false;
 const DEPTH_ORDER = false;
-const HEIGHT = true;
+const HEIGHT = false;
+const DEPTH = true;
 
 let array1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let array2 = [0, 1, 2, 3];
@@ -157,6 +158,24 @@ if(HEIGHT){
     tree11.prettyPrint()
     console.log(`tree height: ${tree11.height()}`);
 
+    let node1 = tree11.search(3);
+    console.log(`height for node 3: ${tree11.height(node1)}`)
+}
+
+if(DEPTH){
+    console.log('EXAMPLE DEPTH');
+
+    tree11.insert(5);
+    tree11.insert(4);
+    tree11.insert(3);
+    tree11.insert(2);
+    tree11.insert(1);
+    tree11.prettyPrint()
+
+    let node1 = tree11.search(3);
+    let node2 = tree11.search(60);
+    console.log(`Depth for node 3: ${tree11.depth(node1)}`);
+    console.log(`Depth for node 60: ${tree11.depth(node2)}`);
 }
 
 

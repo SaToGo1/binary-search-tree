@@ -278,9 +278,15 @@ class BalancedBinaryTree{
         return array;
     }
 
+    // Returns the number of edges in longest path from a given node to a leaf node.
+    // we go to the leaf and start adding 1 to height every time
+    // we increase a level.
     height(root=this.root){
-        // Post Order
+        // Post Order transversal
         if(root === null){
+            return 0;
+        }
+        if(root.left === null && root.right === null){
             return 0;
         }
 
@@ -291,12 +297,52 @@ class BalancedBinaryTree{
         let height = 0;
         let heightLeft = 0;
         let heightRight = 0;
+
         heightLeft = this.height(leftSubTree);
         heightRight = this.height(rightSubTree);
+
+        // height is equal to height of bigger subtree + 1.
         height = heightLeft > heightRight? heightLeft : heightRight;
         height++;
         
         return height; 
+    }
+
+    // Returns the number of edges in path from a given node to the tree’s root node.
+    //
+    // From root we traverse in breadth-first order the tree and every time we go down 
+    // 1 level we augment 1 the depth until we find the target node and return the depth
+    // of the target node.
+    depth(targetNode, node=this.root){
+        // Level-Order Transversal.
+        let depth = 0;
+        let nodeAndDepth = [node, depth];
+        let queue = [nodeAndDepth];
+        depth = this._depth(targetNode, queue);
+
+        return depth;
+    }
+
+    _depth(targetNode, queue){
+        let targetReached = false;
+        let [node, depth] = queue.shift();
+
+        if(targetNode === node){
+            targetReached = true;
+        }
+
+        if(node.left){
+            let nodeAndDepth = [node.left, depth + 1];
+            queue.push(nodeAndDepth);
+        } 
+        
+        if(node.right){
+            let nodeAndDepth = [node.right, depth + 1];
+            queue.push(nodeAndDepth);
+        } 
+
+        if( queue.length > 0 && !(targetReached) ) return this._depth(targetNode, queue);
+        return depth;
     }
 }
 
