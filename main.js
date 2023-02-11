@@ -114,7 +114,8 @@ if(LEVEL_ORDER){
     tree10.delete(30);
     tree10.delete(70);
     tree10.prettyPrint();
-    tree10.levelOrder(callData);
+    let ar = tree10.levelOrder(callData);
+    console.log(`ar = ${ar}`);
 }
 
 // if(DEPTH_ORDER){

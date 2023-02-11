@@ -182,14 +182,21 @@ class BalancedBinaryTree{
     }
 
     levelOrder(cb, root=this.root){
-        const recursive = false;
-        const loop = true;
+        const recursive = true;
+        const loop = false;
 
-        
+        //saves the data of the nodes in order.
+        let array = [];
+
+        //only 1 can be active at a time.
+        if(recursive == true && loop ==true){
+            loop = false;
+        }
+
         if(recursive){
             // use shift and push for FIFO.
             let queue = [root];
-            this._levelOrderRecursive(cb, queue);
+            array = this._levelOrderRecursive(cb, queue, array);
         }
 
         if(loop){
@@ -198,19 +205,28 @@ class BalancedBinaryTree{
                 let node = queue.shift();
                 if(node.left) queue.push(node.left);
                 if(node.right) queue.push(node.right);
+                array.push(node.data);
                 cb(node);
             }
         }
+
+        return array;
     }
 
-    _levelOrderRecursive(cb, queue){
+    _levelOrderRecursive(cb, queue, array){
         let node = queue.shift();
         if(node.left) queue.push(node.left);
         if(node.right) queue.push(node.right);
+        array.push(node.data);
         cb(node);
 
-        if(queue.length > 0) return this._levelOrderRecursive(cb, queue);
+        if(queue.length > 0) return this._levelOrderRecursive(cb, queue, array);
+        return array;
     }
+
+    // DepthPreOrder(){
+    //     if
+    // }
 }
 
 module.exports = BalancedBinaryTree
